@@ -20,9 +20,9 @@ const MainNavigator = createStackNavigator({
   Profile: {screen: ProfileScreen},
 })
 
-export const App = createAppContainer(MainNavigator)
+const App = createAppContainer(MainNavigator)
 
-// export default App
+export default App
 
 const styles = StyleSheet.create({
   container: {
