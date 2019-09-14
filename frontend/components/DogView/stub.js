@@ -1,0 +1,131 @@
+export const dogs = [
+  {
+    id: 1,
+    name: "Afro",
+    age: 3,
+    sex: 1,
+    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    profilePic: "https://placedog.net/750/1334?id=1",
+    album: [
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280"
+    ],
+    profileDesc: `This dog is awesome! Let\'s walk him :)`,
+    breed: "Akbash",
+    availableTimes: [
+      new Date("2019/09/14 12:30:00"),
+      new Date("2019/09/14 13:00:00"),
+      new Date("2019/09/14 13:30:00")
+    ]
+  },
+  {
+    id: 2,
+    name: "Babe",
+    age: 3,
+    sex: 2,
+    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    profilePic: "https://placedog.net/750/1334?id=2",
+    album: [
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280"
+    ],
+    profileDesc: `This dog is awesome! Let\'s walk him :)`,
+    breed: "Akita",
+    availableTimes: [
+      new Date("2019/09/14 12:30:00"),
+      new Date("2019/09/14 13:00:00"),
+      new Date("2019/09/14 13:30:00")
+    ]
+  },
+  {
+    id: 3,
+    name: "Chewie",
+    age: 3,
+    sex: 2,
+    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    profilePic: "https://placedog.net/750/1334?id=3",
+    album: [
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280"
+    ],
+    profileDesc: `This dog is awesome! Let\'s walk him :)`,
+    breed: "Alano Español",
+    availableTimes: [
+      new Date("2019/09/14 12:30:00"),
+      new Date("2019/09/14 13:00:00"),
+      new Date("2019/09/14 13:30:00")
+    ]
+  },
+  {
+    id: 4,
+    name: "Dude",
+    age: 3,
+    sex: 1,
+    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    profilePic: "https://placedog.net/750/1334?id=4",
+    album: [
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280"
+    ],
+    profileDesc: `This dog is awesome! Let\'s walk him :)`,
+    breed: "Toy",
+    availableTimes: [
+      new Date("2019/09/14 12:30:00"),
+      new Date("2019/09/14 13:00:00"),
+      new Date("2019/09/14 13:30:00")
+    ]
+  }
+]
+
+export const history = [
+  {
+    id: 5,
+    name: "Afro",
+    age: 3,
+    sex: 1,
+    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    profilePic: "https://placedog.net/750/1334?id=5",
+    album: [
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280"
+    ],
+    profileDesc: `This dog is awesome! Let\'s walk him :)`,
+    breed: "Toy",
+    availableTimes: [
+      new Date("2019/09/14 12:30:00"),
+      new Date("2019/09/14 13:00:00"),
+      new Date("2019/09/14 13:30:00")
+    ]
+  },
+  {
+    id: 6,
+    name: "Babe",
+    age: 3,
+    sex: 2,
+    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    profilePic: "https://placedog.net/750/1334?id=6",
+    album: [
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280",
+      "https://placedog.net/500/280"
+    ],
+    profileDesc: `This dog is awesome! Let\'s walk him :)`,
+    breed: "Toy",
+    availableTimes: [
+      new Date("2019/09/14 12:30:00"),
+      new Date("2019/09/14 13:00:00"),
+      new Date("2019/09/14 13:30:00")
+    ]
+  }
+]
