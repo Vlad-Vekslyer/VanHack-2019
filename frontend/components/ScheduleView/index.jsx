@@ -1,5 +1,9 @@
 import React from "react"
-import { StyleSheet, View, ImageBackground, Image, Text } from "react-native"
+import {View, ImageBackground, Image, Text } from "react-native"
+import TimeSlot from "./TimeSlot"
+import styles from "./styles"
+import arrowImage from "./assets/arrow-2@3x.png"
+import pinImage from "./assets/pin@3x.png"
 
 let joshPeck = {
   name: "Josh Peck",
@@ -11,49 +15,12 @@ let drakeBell = {
   profilePic: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Drake_Bell_2007_cropped_retouched.jpg/220px-Drake_Bell_2007_cropped_retouched.jpg"
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center"
-  },
-  backButton: {
-    backgroundImage: 'url("https://cdn.pixabay.com/photo/2016/09/05/10/50/app-1646213_960_720.png")',
-    width: 30,
-    height: 30,
-    alignSelf: "flex-start"
-  },
-  header : {
-    width: "80%",
-    alignItems: "center",
-    justifyContent: "space-around",
-    flexDirection: "row"
-  },
-  profilePic : {
-    borderRadius: 42,
-    width: 80,
-    height: 80
-  },
-  dogHeaders : {
-    display: "flex",
-    flexWrap: "wrap",
-    width: "60%"
-  },
-  dogName : {
-    width: "100%" ,
-    fontSize: 30,
-    margin: 0
-  },
-  location: {
-    fontSize: "0.8em"
-  }
-})
-
 class MapView extends React.Component{
 
   state = {
       dog: {
         name: "Rocky",
+        age: "1 month",
         profilePic: "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg",
         availableTimes: [new Date('September 20, 2019 14:00:00'), new Date('September 20, 2019 16:00:00')]
       },
@@ -63,16 +30,32 @@ class MapView extends React.Component{
 
 
   render(){
+    let timeSlots = this.state.dog.availableTimes.map(timeSlot => {
+      let walkers = this.state.walks.filter(walk => walk.time.getTime() === timeSlot.getTime());
+      if(walkers.length > 0){
+        return <TimeSlot time={timeSlot} walkers={walkers}/>
+      } else {
+        return null;
+      }
+    })
     return (
       <View style={styles.container}>
-        <ImageBackground style={styles.backButton} source="https://cdn.pixabay.com/photo/2016/09/05/10/50/app-1646213_960_720.png">
-        </ImageBackground>
         <View style={styles.header}>
+          <Image style={styles.backButton} source={arrowImage}></Image>
           <Image source={this.state.dog.profilePic} style={styles.profilePic}></Image>
           <View style={styles.dogHeaders}>
-            <Text style={styles.dogName}>{this.state.dog.name}</Text>
-            <Text style={styles.locationName}>{this.state.locationName}</Text>
+            <Text style={styles.dogName}>
+              {this.state.dog.name},
+              {this.state.dog.age}
+            </Text>
+            <Text style={styles.locationName}>
+              <Image style={styles.pinImage} source={pinImage}></Image>
+              {this.state.locationName}
+            </Text>
           </View>
+        </View> 
+        <View style={styles.slotsSection}>
+          {timeSlots}
         </View>
       </View>
     )
