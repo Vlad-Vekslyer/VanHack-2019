@@ -51,7 +51,7 @@ class ScheduleView extends React.Component{
             <TouchableOpacity onPress={onBack}>
               <Image style={styles.backButton} source={arrowImage}></Image>
             </TouchableOpacity>
-            <Image source={{uri: this.state.dog.profilePic}} style={styles.profilePic}></Image>
+            <Image source={{uri: this.state.dog.profilePic, cache: 'force-cache'}} style={styles.profilePic}></Image>
             <View style={styles.dogHeaders}>
               <Text style={styles.dogName}>{this.state.dog.name}, {this.state.dog.age}</Text>
               <Text style={styles.locationName}>
