@@ -4,7 +4,7 @@ export const dogs = [
     name: "Afro",
     age: 3,
     sex: 1,
-    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video001.mp4",
     profilePic: "https://placedog.net/750/1334?id=1",
     album: [
       "https://placedog.net/500/280",
@@ -25,7 +25,7 @@ export const dogs = [
     name: "Babe",
     age: 3,
     sex: 2,
-    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video002.mp4",
     profilePic: "https://placedog.net/750/1334?id=2",
     album: [
       "https://placedog.net/500/280",
@@ -46,7 +46,7 @@ export const dogs = [
     name: "Chewie",
     age: 3,
     sex: 2,
-    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video003.mp4",
     profilePic: "https://placedog.net/750/1334?id=3",
     album: [
       "https://placedog.net/500/280",
@@ -67,7 +67,7 @@ export const dogs = [
     name: "Dude",
     age: 3,
     sex: 1,
-    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video004.mp4",
     profilePic: "https://placedog.net/750/1334?id=4",
     album: [
       "https://placedog.net/500/280",
@@ -91,7 +91,7 @@ export const history = [
     name: "Afro",
     age: 3,
     sex: 1,
-    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video005.mp4",
     profilePic: "https://placedog.net/750/1334?id=5",
     album: [
       "https://placedog.net/500/280",
@@ -112,7 +112,7 @@ export const history = [
     name: "Babe",
     age: 3,
     sex: 2,
-    video: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video006.mp4",
     profilePic: "https://placedog.net/750/1334?id=6",
     album: [
       "https://placedog.net/500/280",
