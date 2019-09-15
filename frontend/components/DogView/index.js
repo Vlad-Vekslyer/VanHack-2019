@@ -22,6 +22,7 @@ import MailImage from "./assets/mail.png"
 import FemailImage from "./assets/femail.png"
 import ShareImage from "./assets/share.png"
 import CancelImage from "./assets/cancel.png"
+import ArrowImage from "./assets/arrow.png"
 
 const MONTHS = [
   "JAN",
@@ -78,7 +79,7 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
     }}
   >
     <TouchableOpacity
-      activeOpacity={active === 0 ? 1 : 0.6}
+      activeOpacity={active === 0 ? 1 : 0.8}
       onPress={() => onSelectTab(0)}
     >
       <Text
@@ -102,7 +103,7 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
       }}
     />
     <TouchableOpacity
-      activeOpacity={active === 1 ? 1 : 0.6}
+      activeOpacity={active === 1 ? 1 : 0.8}
       onPress={() => onSelectTab(1)}
     >
       <Text
@@ -322,7 +323,8 @@ const DogList = ({
 
 const DogView = ({
   onSelect = dog => {},
-  onProfile = dog => {}
+  onProfile = dog => {},
+  onBack = () => {}
 }) => {
   const [tab, setTab] = useState(0)
   const [dogs, setDogs] = useState([])
@@ -373,6 +375,9 @@ const DogView = ({
       )}
 
       <View style={{ position: "absolute", top: 0, width: "100%" }}>
+        <TouchableOpacity onPress={onBack} style={{ marginTop: 16 }} activeOpacity={0.8}>
+          <Image source={ArrowImage} style={{position: 'absolute', left: 10, top: 15, width: 15, height: 10}} />
+        </TouchableOpacity>
         <Tabs active={tab} onSelectTab={handleSelect} />
       </View>
 

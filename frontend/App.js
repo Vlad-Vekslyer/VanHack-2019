@@ -24,6 +24,7 @@ export default () => {
         <DogView
           onProfile={() => setRoute("profile")}
           onSelect={() => setRoute("schedule")}
+          onBack={() => setRoute('map')}
         />
       )
     case "profile":
