@@ -8,12 +8,19 @@
     "eject": "expo eject",
     "storybook": "start-storybook -p 7007"
   },
+  "proxy": "http://localhost:5000",
   "dependencies": {
+    "axios": "^0.19.0",
     "expo": "^34.0.1",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
+    "react-medium-image-zoom": "^3.1.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
-    "react-native-web": "^0.11.4"
+    "react-native-elements": "^1.2.0",
+    "react-native-image-pan-zoom": "^2.1.11",
+    "react-native-image-zoom-viewer": "^2.2.26",
+    "react-native-web": "^0.11.4",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
@@ -25,5 +32,10 @@
     "babel-loader": "^8.0.6",
     "babel-preset-expo": "^6.0.0"
   },
-  "private": true
+  "private": true,
+  "name": "frontend",
+  "description": "run `npm run web` `npm run ios` `npm run android`",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC"
 }
