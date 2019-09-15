@@ -16,6 +16,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import Match from "./match"
 import FeedbackView from "../FeedbackView"
 import GenderIcon from "../GenderIcon"
+import LikeButton from './like'
 
 import * as stub from "./stub"
 
@@ -64,7 +65,7 @@ const loadHistory = () =>
     .then(r => r.json())
     .then(data => {
       if (data.dogsWalked) {
-        return data.dogsWalked
+        return data.dogsWalked.map(el => ({...el, date: new Date('2019/09/14 12:30')}))
       }
       return []
     })
@@ -293,15 +294,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
           </>
         ) : (
           <View style={{ alignItems: "center" }}>
-            <TouchableOpacity
-              onPress={() => onLike(dog)}
-              style={{ width: 110, height: 110 }}
-            >
-              <Image
-                style={{ flex: 1, resizeMode: "contain" }}
-                source={LikeImage}
-              />
-            </TouchableOpacity>
+            <LikeButton onPress={() => onLike(dog)} />
           </View>
         )}
       </View>
