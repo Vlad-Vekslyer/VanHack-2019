@@ -9,8 +9,8 @@ import SignUpView from "./components/SignUpView"
 StatusBar.setHidden(true)
 
 export default () => {
-  // const [route, setRoute] = useState("signup")
-  const [route, setRoute] = useState("dog")
+  const [route, setRoute] = useState("signup")
+  // const [route, setRoute] = useState("dog")
   const [dogId, setDogId] = useState(null)
 
   switch (route) {
