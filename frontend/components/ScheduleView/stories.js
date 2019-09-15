@@ -6,7 +6,5 @@ import { linkTo } from "@storybook/addon-links"
 import ScheduleView from "./"
 
 storiesOf("ScheduleView", module).add("default", () => (
-  <ScheduleView>
-    <Text>Hello Button</Text>
-  </ScheduleView>
+  <ScheduleView />
 ))

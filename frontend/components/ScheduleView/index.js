@@ -2,8 +2,8 @@ import React from "react"
 import {View, ImageBackground, Image, Text } from "react-native"
 import TimeSlot from "./TimeSlot"
 import styles from "./styles"
-import arrowImage from "./assets/arrow-2@3x.png"
-import pinImage from "./assets/pin@3x.png"
+import arrowImage from "./assets/arrow-2.png"
+import pinImage from "./assets/pin.png"
 
 let joshPeck = {
   name: "Josh Peck",
@@ -15,7 +15,7 @@ let drakeBell = {
   profilePic: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Drake_Bell_2007_cropped_retouched.jpg/220px-Drake_Bell_2007_cropped_retouched.jpg"
 }
 
-class MapView extends React.Component{
+class ScheduleView extends React.Component{
 
   state = {
       dog: {
@@ -35,8 +35,8 @@ class MapView extends React.Component{
     let timeSlots = this.state.dog.availableTimes.map(timeSlot => {
       let walkers = this.state.walks.filter(walk => walk.time.getTime() === timeSlot.getTime());
       if(walkers.length > 0){
-        walkers = walkers[0].walkers;
-        return <TimeSlot time={timeSlot} walkers={walkers}/>
+        const  w = walkers[0].walkers;
+        return <TimeSlot key={timeSlot.getTime()} time={timeSlot} walkers={w}/>
       } else {
         return null;
       }
@@ -47,7 +47,7 @@ class MapView extends React.Component{
         <View style={styles.header}>
           <View style={styles.headerSection}>
             <Image style={styles.backButton} source={arrowImage}></Image>
-            <Image source={this.state.dog.profilePic} style={styles.profilePic}></Image>
+            <Image source={{uri: this.state.dog.profilePic}} style={styles.profilePic}></Image>
             <View style={styles.dogHeaders}>
               <Text style={styles.dogName}>{this.state.dog.name}, {this.state.dog.age}</Text>
               <Text style={styles.locationName}>
@@ -65,4 +65,4 @@ class MapView extends React.Component{
   }
 }
 
-export default MapView;
+export default ScheduleView;

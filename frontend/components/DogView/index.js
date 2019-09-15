@@ -17,11 +17,11 @@ import Match from "./match"
 
 import * as stub from "./stub"
 
-import LikeImage from "./assets/like@2x.png"
-import MailImage from "./assets/mail@2x.png"
-import FemailImage from "./assets/femail@2x.png"
-import ShareImage from "./assets/share@2x.png"
-import CancelImage from "./assets/cancel@3x.png"
+import LikeImage from "./assets/like.png"
+import MailImage from "./assets/mail.png"
+import FemailImage from "./assets/femail.png"
+import ShareImage from "./assets/share.png"
+import CancelImage from "./assets/cancel.png"
 
 const MONTHS = [
   "JAN",
@@ -173,12 +173,12 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
           justifyContent: "center"
         }}
       >
-        <TouchableOpacity onPress={onProfile} style={{ marginTop: 16 }}>
+        <TouchableOpacity onPress={onProfile} style={{ marginTop: 16 }} activeOpacity={.8}>
           <Image
             style={{
               width: 44,
               height: 44,
-              borderRadius: 100,
+              borderRadius: 22,
               borderColor: "#fff",
               borderWidth: 0.5
             }}

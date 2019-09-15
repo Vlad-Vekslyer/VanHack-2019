@@ -12,8 +12,8 @@ import {
 
 import { LinearGradient } from "expo-linear-gradient"
 
-import Button from "./assets/schedule-button@2x.png"
-import Walking from "./assets/let-s-go-walking@2x.png"
+import Button from "./assets/schedule-button.png"
+import Walking from "./assets/let-s-go-walking.png"
 
 const MatchView = ({ dog, onConfirm }) => {
   return (
@@ -59,7 +59,7 @@ const MatchView = ({ dog, onConfirm }) => {
               marginTop: 17,
               width: 100,
               height: 100,
-              borderRadius: 100,
+              borderRadius: 50,
               borderColor: "#fff",
               borderWidth: 0.5
             }}

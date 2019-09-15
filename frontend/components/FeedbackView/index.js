@@ -1,7 +1,9 @@
 import React, { useState, useEffect} from "react"
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
-import ImageZoom from 'react-medium-image-zoom'
+// import ImageZoom from 'react-medium-image-zoom'
 import female from './female.png'
+
+const ImageZoom = ({image}) => <Image source={{uri: image.src}} style={image.style} />
 
 const MapView = props => {
   const photo1 = 'https://placedog.net/750/1334?id=1'
@@ -91,9 +93,10 @@ const MapView = props => {
         </View>
       </View>
       <View style={styles.bottom}>
-        {dogPhotos.map(photo => {
+        {dogPhotos.map((photo, idx) => {
           return (
             <ImageZoom
+              key={idx}
               image={{
                 src: photo,
                 style: {height: 113, width: 113, margin: 3},

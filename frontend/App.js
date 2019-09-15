@@ -1,22 +1,41 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react"
+import { StatusBar, View } from "react-native"
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Open up App.js to start working on your app!</Text>
-//     </View>
-//   );
-// }
+import MapView from "./components/MapView"
+import DogView from "./components/DogView"
+import FeedbackView from "./components/FeedbackView"
+import ScheduleView from "./components/ScheduleView"
 
-import storybook from './storybook'
-export default storybook
+const LoginView = () => <View>login</View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+StatusBar.setHidden(true)
+
+export default () => {
+  const [route, setRoute] = useState("map")
+
+  switch (route) {
+    // case "login":
+    //   return <MapView />
+    case "map":
+      return <MapView />
+    case "dog":
+      return <DogView />
+    case "profile":
+      return <FeedbackView />
+    case "schedule":
+      return <ScheduleView />
+  }
+}
+
+// import storybook from './storybook'
+// export default storybook
+
+// const styles = StyleSheet.create({
+//   container: {
+//     // flex: 1,
+//     width: "100%",
+//     backgroundColor: "#fff",
+//     alignItems: "center",
+//     justifyContent: "center"
+//   }
+// })

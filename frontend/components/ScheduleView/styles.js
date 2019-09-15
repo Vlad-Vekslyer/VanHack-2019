@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.55
   },
   profilePic : {
-    borderRadius: 42,
+    borderRadius: 45 / 2,
     width: 45,
     height: 45,
     marginLeft: 10,
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     borderWidth: 0.5,
-    borderStyle: "solid",
     borderColor: "#ffffff"
   },
   dogHeaders : {
