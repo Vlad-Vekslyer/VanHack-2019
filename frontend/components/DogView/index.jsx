@@ -21,6 +21,36 @@ import FemailImage from "./assets/femail@2x.png"
 import ShareImage from "./assets/share@2x.png"
 import CancelImage from "./assets/cancel@3x.png"
 
+const MONTHS = [
+  "JAN",
+  "FEB",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+]
+
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+
+const formatDate = d => {
+  // 12:00 • SUN, 31, Dec.
+  const hour = d.getHours()
+  const min = d.getMinutes()
+  const month = MONTHS[d.getMonth()]
+  const date = d.getDate()
+  const day = DAYS[d.getDay()]
+
+  return `${hour}:${min} · ${day}, ${date} ${month}.`
+}
+
 const loadDogs = async () =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -205,39 +235,49 @@ const DogProfile = ({ dog }) => {
         >
           {dog.breed}
         </Text>
-        <View style={{ alignItems: "center" }}>
-          <TouchableOpacity
-            onPress={onPress}
-            style={{ width: 110, height: 110 }}
-          >
-            <Image
-              style={{ flex: 1, resizeMode: "contain" }}
-              source={LikeImage}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={{ alignItems: "center" }}>
-          <TouchableOpacity onPress={onPress} style={{ width: 120, height: 40 }}>
-            <Image
-              style={{ flex: 1, resizeMode: "contain" }}
-              source={CancelImage}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={{ flexDirection: "column", marginTop: 10 }}>
-          <Text
-            style={{
-              fontSize: 18,
-              fontFamily: "Avenir",
-              color: "#fff",
-              fontWeight: "300",
-              marginTop: 4
-            }}
-          >
-            <Text>Your Date:</Text>
-            <Text style={{ fontWeight: "900" }}>12:00 · SUN, 31 Dec.</Text>
-          </Text>
-        </View>
+        {dog.date ? (
+          <>
+            <View style={{ alignItems: "center" }}>
+              <TouchableOpacity
+                onPress={onPress}
+                style={{ width: 120, height: 40 }}
+              >
+                <Image
+                  style={{ flex: 1, resizeMode: "contain" }}
+                  source={CancelImage}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={{ flexDirection: "column", marginTop: 10, paddingBottom: 20 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontFamily: "Avenir",
+                  color: "#fff",
+                  fontWeight: "300",
+                  marginTop: 4
+                }}
+              >
+                <Text>Your Date:</Text>
+                <Text style={{ fontWeight: "900" }}>
+                  {formatDate(dog.date)}
+                </Text>
+              </Text>
+            </View>
+          </>
+        ) : (
+          <View style={{ alignItems: "center" }}>
+            <TouchableOpacity
+              onPress={onPress}
+              style={{ width: 110, height: 110 }}
+            >
+              <Image
+                style={{ flex: 1, resizeMode: "contain" }}
+                source={LikeImage}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   )

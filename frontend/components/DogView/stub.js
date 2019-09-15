@@ -106,6 +106,7 @@ export const history = [
     ],
     profileDesc: `This dog is awesome! Let\'s walk him :)`,
     breed: "Toy",
+    date: new Date('2019/09/14 12:30:00'),
     availableTimes: [
       new Date("2019/09/14 12:30:00"),
       new Date("2019/09/14 13:00:00"),
@@ -128,6 +129,7 @@ export const history = [
     ],
     profileDesc: `This dog is awesome! Let\'s walk him :)`,
     breed: "Toy",
+    date: new Date('2019/09/14 12:30:00'),
     availableTimes: [
       new Date("2019/09/14 12:30:00"),
       new Date("2019/09/14 13:00:00"),
