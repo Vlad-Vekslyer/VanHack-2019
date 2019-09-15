@@ -5,17 +5,18 @@ import MapView from "./components/MapView"
 import DogView from "./components/DogView"
 import FeedbackView from "./components/FeedbackView"
 import ScheduleView from "./components/ScheduleView"
+import SignUpView from "./components/SignUpView"
 
 const LoginView = () => <View>login</View>
 
 StatusBar.setHidden(true)
 
 export default () => {
-  const [route, setRoute] = useState("map")
+  const [route, setRoute] = useState("signup")
 
   switch (route) {
-    // case "login":
-    //   return <MapView />
+    case "signup":
+      return <SignUpView />
     case "map":
       return <MapView />
     case "dog":

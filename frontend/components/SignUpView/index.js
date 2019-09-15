@@ -3,18 +3,18 @@ import { Text, View, StyleSheet, ImageBackground, Image, Alert } from 'react-nat
 import Constants from 'expo-constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
-import Home from './Home';
+// import Home from './Home';
 
 export default class Auth extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require('../assets/combined-shape@3x.png')}
+          source={require('./assets/combined-shape.png')}
           style={{width: 375, height: 250, top: 0, position: 'absolute'}}
         />
         <ImageBackground
-          source={require('../assets/logo@3x.png')}
+          source={require('./assets/logo.png')}
           style={{width: 165, height: 129.14, top: 50, left: 118, position: 'absolute'}}
         />
         <View style={{marginTop: 150}}>
@@ -45,9 +45,9 @@ export default class Auth extends React.Component {
           <View style={styles.divider}></View>
           <Text style={styles.footer}>OR</Text>
           <View style={{flexDirection: 'row', marginTop: 30}}>
-            <Image source={require('../assets/google@3x.png')} style={{width: 40, height: 40, alignSelf: 'stretch', marginRight: 72.5}}/>
-            <Image source={require('../assets/facebook@3x.png')} style={{width: 40, height: 40, alignSelf: 'center', marginRight: 82.5}}/>
-            <Image source={require('../assets/instagram@3x.png')} style={{width: 40, height: 40, alignSelf: 'stretch'}}/>
+            <Image source={require('./assets/google.png')} style={{width: 40, height: 40, alignSelf: 'stretch', marginRight: 72.5}}/>
+            <Image source={require('./assets/facebook.png')} style={{width: 40, height: 40, alignSelf: 'center', marginRight: 82.5}}/>
+            <Image source={require('./assets/instagram.png')} style={{width: 40, height: 40, alignSelf: 'stretch'}}/>
           </View>
         </View>
       </View>
@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 10,
-    borderRadius: '50%',
+    borderRadius: 50,
     padding: 3.5,
     marginTop: 30,
     width: 280
   },
   button: {
     backgroundColor: '#00cc00',
-    borderRadius: '50%',
+    borderRadius: 50,
     fontFamily: 'Avenir-Medium',
     padding: 10.5,
     marginTop: 30,
