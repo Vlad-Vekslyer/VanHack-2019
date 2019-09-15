@@ -113,7 +113,7 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
           color: "#fff"
         }}
       >
-        My Dog
+        My Dogs
       </Text>
     </TouchableOpacity>
   </View>
