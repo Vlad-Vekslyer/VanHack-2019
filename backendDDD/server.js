@@ -20,8 +20,21 @@ app.get('/api/dogs', async (req, res) => {
   } catch(e){
     res.send(e);
   }
-})
+});
 
+app.get('/api/dogs/:id/schedule', async (req, res) => {
+  try {
+    let foundDog = await Dog.findById(req.params.id);
+    let walks = await Walk.find({dog: foundDog.id});
+    let responseObject = {
+      dog: foundDog,
+      walks: walks
+    }
+    res.json(responseObject);
+  } catch(e){
+    res.send(e);
+  }
+})
 
 const port = 5000
 app.listen(port, () => console.log(`Server started on port ${port}`))
