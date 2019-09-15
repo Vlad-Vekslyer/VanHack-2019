@@ -12,6 +12,8 @@
   "dependencies": {
     "axios": "^0.19.0",
     "expo": "^34.0.1",
+    "expo-av": "^6.0.0",
+    "expo-linear-gradient": "^6.0.0",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-medium-image-zoom": "^3.1.1",

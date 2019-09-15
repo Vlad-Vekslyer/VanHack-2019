@@ -1,19 +1,352 @@
-import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import React, { useState, useCallback, useEffect } from "react"
 
-export default function MapView() {
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  Dimensions,
+  TouchableOpacity
+} from "react-native"
+
+import { Video } from "expo-av"
+import { LinearGradient } from "expo-linear-gradient"
+
+import Match from "./match"
+
+import * as stub from "./stub"
+
+import LikeImage from "./assets/like@2x.png"
+import MailImage from "./assets/mail@2x.png"
+import FemailImage from "./assets/femail@2x.png"
+import ShareImage from "./assets/share@2x.png"
+import CancelImage from "./assets/cancel@3x.png"
+
+const MONTHS = [
+  "JAN",
+  "FEB",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+]
+
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+
+const formatDate = d => {
+  // 12:00 • SUN, 31, Dec.
+  const hour = d.getHours()
+  const min = d.getMinutes()
+  const month = MONTHS[d.getMonth()]
+  const date = d.getDate()
+  const day = DAYS[d.getDay()]
+
+  return `${hour}:${min} · ${day}, ${date} ${month}.`
+}
+
+const loadDogs = async () =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(stub.dogs)
+    }, 300)
+  })
+
+const loadHistory = async () =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(stub.history)
+    }, 300)
+  })
+
+const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
+  <View
+    style={{
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100%",
+      padding: 24
+    }}
+  >
+    <TouchableOpacity
+      activeOpacity={active === 0 ? 1 : 0.6}
+      onPress={() => onSelectTab(0)}
+    >
+      <Text
+        style={{
+          fontSize: 18,
+          fontFamily: "Avenir",
+          fontWeight: active === 0 ? "900" : "normal",
+          color: "#fff"
+        }}
+      >
+        For You
+      </Text>
+    </TouchableOpacity>
+    <View
+      style={{
+        borderLeftWidth: 1,
+        height: 10,
+        borderColor: "#fff",
+        marginLeft: 10,
+        marginRight: 10
+      }}
+    />
+    <TouchableOpacity
+      activeOpacity={active === 1 ? 1 : 0.6}
+      onPress={() => onSelectTab(1)}
+    >
+      <Text
+        style={{
+          fontSize: 18,
+          fontFamily: "Avenir",
+          fontWeight: active === 1 ? "900" : "normal",
+          color: "#fff"
+        }}
+      >
+        My Dog
+      </Text>
+    </TouchableOpacity>
+  </View>
+)
+
+const SexImage = ({ sex, style = {} }) => (
+  <View style={{ ...style, width: 22, height: 22 }}>
+    {sex === 1 ? (
+      <Image style={{ flex: 1, resizeMode: "contain" }} source={MailImage} />
+    ) : (
+      <Image style={{ flex: 1, resizeMode: "contain" }} source={FemailImage} />
+    )}
+  </View>
+)
+
+const DogProfile = ({ dog }) => {
+  const { width, height } = Dimensions.get("window")
+
+  const onPress = () => {
+    console.log("presed!")
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>This is a DogView</Text>
+    <View style={{ width, height }}>
+      <Image
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%"
+        }}
+        source={{ uri: dog.thumbnail }}
+      />
+      <Video
+        source={{ uri: dog.video }}
+        rate={1.0}
+        volume={1.0}
+        isMuted={false}
+        resizeMode={Video.RESIZE_MODE_COVER}
+        shouldPlay
+        isLooping
+        style={{ flex: 1 }}
+        // style={{ top: 0, left: 0, right: 0, bottom: 0 }}
+      />
+      <LinearGradient
+        colors={[
+          "rgba(0, 0, 0, 0.4)",
+          "#rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, .8)"
+        ]}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
+      />
+      <View
+        style={{
+          position: "absolute",
+          bottom: 0,
+          top: 0,
+          right: 16,
+          alignContent: "center",
+          justifyContent: "center"
+        }}
+      >
+        <TouchableOpacity onPress={onPress} style={{ marginTop: 16 }}>
+          <Image
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 100,
+              borderColor: "#fff",
+              borderWidth: 0.5
+            }}
+            source={{ uri: dog.profilePic }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onPress} style={{ marginTop: 37.5 }}>
+          <Image style={{ width: 44, height: 44 }} source={ShareImage} />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          position: "absolute",
+          bottom: 0, // TODO: 12.5 maybe?
+          width: "100%",
+          paddingLeft: 10
+        }}
+      >
+        <View style={{ flex: 1 }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text
+              style={{
+                fontSize: 25,
+                fontFamily: "Avenir",
+                color: "#fff",
+                fontWeight: "900"
+              }}
+            >
+              {dog.name}
+            </Text>
+            <SexImage sex={dog.sex} style={{ marginLeft: 4 }} />
+            <Text
+              style={{
+                fontSize: 25,
+                fontFamily: "Avenir",
+                color: "#fff",
+                fontWeight: "900"
+              }}
+            >
+              , {dog.age}
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={{
+            fontSize: 18,
+            fontFamily: "Avenir",
+            color: "#fff",
+            fontWeight: "500",
+            marginTop: 4
+          }}
+        >
+          {dog.breed}
+        </Text>
+        {dog.date ? (
+          <>
+            <View style={{ alignItems: "center" }}>
+              <TouchableOpacity
+                onPress={onPress}
+                style={{ width: 120, height: 40 }}
+              >
+                <Image
+                  style={{ flex: 1, resizeMode: "contain" }}
+                  source={CancelImage}
+                />
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flexDirection: "column",
+                marginTop: 10,
+                paddingBottom: 20
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontFamily: "Avenir",
+                  color: "#fff",
+                  fontWeight: "300",
+                  marginTop: 4
+                }}
+              >
+                <Text>Your Date:</Text>
+                <Text style={{ fontWeight: "900" }}>
+                  {formatDate(dog.date)}
+                </Text>
+              </Text>
+            </View>
+          </>
+        ) : (
+          <View style={{ alignItems: "center" }}>
+            <TouchableOpacity
+              onPress={onPress}
+              style={{ width: 110, height: 110 }}
+            >
+              <Image
+                style={{ flex: 1, resizeMode: "contain" }}
+                source={LikeImage}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-})
+const DogList = ({ dogs }) => (
+  <ScrollView
+    // style={{ position: "absolute", top: 0, bottom: 0, width: "100%" }}
+    contentContainerStyle={{
+      backgroundColor: "#fff",
+      alignItems: "center"
+    }}
+    showsVerticalScrollIndicator={false}
+    pagingEnabled
+    snapToStart
+  >
+    {dogs.map(dog => (
+      <DogProfile key={dog.id} dog={dog} />
+    ))}
+  </ScrollView>
+)
+
+const DogView = () => {
+  const [tab, setTab] = useState(0)
+  const [dogs, setDogs] = useState([])
+  const [history, setHistory] = useState([])
+
+  useEffect(() => {
+    ;(async () => {
+      const [dogs, history] = await Promise.all([
+        await loadDogs(),
+        await loadHistory()
+      ])
+
+      setDogs(dogs)
+      setHistory(history)
+    })()
+  }, [])
+
+  const handleSelect = useCallback(
+    index => {
+      setTab(index)
+    },
+    [tab, dogs]
+  )
+
+  return (
+    <View style={{ height: "100%", width: "100%" }}>
+      {tab === 0 ? (
+        <DogList key="foryou" dogs={dogs} />
+      ) : (
+        <DogList key="history" dogs={history} />
+      )}
+
+      <View style={{ position: "absolute", top: 0, width: "100%" }}>
+        <Tabs active={tab} onSelectTab={handleSelect} />
+      </View>
+
+      {dogs && <Match dog={dogs[0]} />}
+    </View>
+  )
+}
+
+export default DogView
