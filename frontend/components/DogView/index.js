@@ -52,19 +52,22 @@ const formatDate = d => {
   return `${hour}:${min} · ${day}, ${date} ${month}.`
 }
 
-const loadDogs = async () =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(stub.dogs)
-    }, 300)
-  })
+const loadDogs = () =>
+  fetch("https://vanhack-2019-backend.herokuapp.com/api/dogs").then(r =>
+    r.json()
+  )
 
-const loadHistory = async () =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(stub.history)
-    }, 300)
-  })
+const loadHistory = () =>
+  fetch(
+    "https://vanhack-2019-backend.herokuapp.com/api/users/5d7daeac954d5a3918f39e26/dogs"
+  )
+    .then(r => r.json())
+    .then(data => {
+      if (data.dogsWalked) {
+        return data.dogsWalked
+      }
+      return []
+    })
 
 const ProfileView = ({ dog, onBack }) => (
   <View style={{ position: "absolute", top: 0, left: 0, bottom: 0, right: 0 }}>
@@ -128,7 +131,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
   const { width, height } = Dimensions.get("window")
 
   const handleCancelPress = useCallback(() => {
-    const date =formatDate(dog.date)
+    const date = formatDate(dog.date)
     Alert.alert(
       date,
       "Do you cancel this date?",
@@ -154,10 +157,10 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
           width: "100%",
           height: "100%"
         }}
-        source={{ uri: dog.thumbnail, cache: "force-cache" }}
+        source={{ uri: dog.profileVidThumbnail, cache: "force-cache" }}
       />
       <Video
-        source={{ uri: dog.video }}
+        source={{ uri: dog.profileVid }}
         rate={1.0}
         volume={1.0}
         isMuted={false}
@@ -198,7 +201,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
               borderColor: "#fff",
               borderWidth: 0.5
             }}
-            source={{ uri: dog.profilePic, cache: "force-cache" }}
+            source={{ uri: dog.profileVidThumbnail, cache: "force-cache" }}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -324,7 +327,7 @@ const DogList = ({
   >
     {dogs.map(dog => (
       <DogProfile
-        key={dog.id}
+        key={dog._id}
         dog={dog}
         onLike={onLike}
         onCancel={onCancel}
@@ -347,7 +350,6 @@ const DogView = ({ onSelect = dog => {}, onBack = () => {} }) => {
         await loadDogs(),
         await loadHistory()
       ])
-
       setDogs(dogs)
       setHistory(history)
     })()

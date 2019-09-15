@@ -21,7 +21,7 @@ const FeedbackView = ({ onBack, dog }) => {
       <View style={styles.top}>
       <ImageZoom
               image={{
-                src: dog.profilePic,
+                src: dog.profileVidThumbnail,
                 style: {width: 72,
                   height: 72, 
                   borderRadius: 72/ 2,},
@@ -31,7 +31,7 @@ const FeedbackView = ({ onBack, dog }) => {
         <View style={styles.topRight}>
         <View style={styles.topRightUpper}>
           <Image style={styles.heart} source={require("./heart.png")}></Image>
-          <Text style={{fontSize: 18}}>{dog.likes}</Text>
+          <Text style={{fontSize: 18}}>{dog.name.length}</Text>
         </View>
         <View style={styles.topRightLower}>
           <Text style={{fontSize: 12, color: '#AAAAAA'}}>Last walk with you was Dec 17th</Text>
