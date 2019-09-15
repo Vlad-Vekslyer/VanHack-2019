@@ -13,6 +13,8 @@ import {
 import { Video } from "expo-av"
 import { LinearGradient } from "expo-linear-gradient"
 
+import Match from "./match"
+
 import * as stub from "./stub"
 
 import LikeImage from "./assets/like@2x.png"
@@ -248,7 +250,13 @@ const DogProfile = ({ dog }) => {
                 />
               </TouchableOpacity>
             </View>
-            <View style={{ flexDirection: "column", marginTop: 10, paddingBottom: 20 }}>
+            <View
+              style={{
+                flexDirection: "column",
+                marginTop: 10,
+                paddingBottom: 20
+              }}
+            >
               <Text
                 style={{
                   fontSize: 18,
@@ -335,6 +343,8 @@ const DogView = () => {
       <View style={{ position: "absolute", top: 0, width: "100%" }}>
         <Tabs active={tab} onSelectTab={handleSelect} />
       </View>
+
+      {dogs && <Match dog={dogs[0]} />}
     </View>
   )
 }
