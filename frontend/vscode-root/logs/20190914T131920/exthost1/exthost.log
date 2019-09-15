@@ -912,3 +912,7 @@ TypeError: Cannot read property 'length' of undefined
 	at readableAddChunk (_stream_readable.js:264:11)
 	at Socket.Readable.push (_stream_readable.js:219:10)
 	at Pipe.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+[2019-09-14 19:21:01.356] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2019-09-14 19:21:01.357] [exthost] [error] Error: DisposableStore is missing...
+	at R._convertCompletionItem (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:559:660)
+	at define.resolveCompletionItem.o.asPromise.then.e (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:559:290)

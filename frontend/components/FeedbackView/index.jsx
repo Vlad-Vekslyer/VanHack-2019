@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react"
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
 import ImageZoom from 'react-medium-image-zoom'
+import female from './female.png'
 
 const MapView = props => {
   const photo1 = 'https://placedog.net/750/1334?id=1'
@@ -11,6 +12,21 @@ const MapView = props => {
   const photo6 = 'https://placedog.net/750/1334?id=6'
 
   const randomDogPhotots = [photo1, photo2, photo3, photo4, photo5, photo6]
+
+  const dog = {
+    name: 'Tiger',
+    age: '2 Months',
+    likes: 3,
+    breed: 'Border Collie',
+    description: 'The American Staffordshire Terrier is a muscular breed that is known for being strong for its size, yet loving and affectionate with their human family. American Staffordshire.',
+    photos: ['https://placedog.net/750/1334?id=1', 'https://placedog.net/750/1334?id=2', 'https://placedog.net/750/1334?id=3', 'https://placedog.net/750/1334?id=4', 'https://placedog.net/750/1334?id=5', 'https://placedog.net/750/1334?id=6' ],
+    dates: [],
+    profilePic: 'https://httpstatusdogs.com/img/100.jpg',
+    gender: 'female',
+  }
+
+  const dogPhotos = dog.photos
+  const gender = (dog.gender === 'female') ? female : null
   
   const [names, setNames] = useState({})
 
@@ -19,16 +35,15 @@ const MapView = props => {
       const res = await fetch('http://localhost:5000/api/names',
       {mode: 'cors'})
       console.log('RES', res)
-      if (res.ok)
-      {res.json()
+      res.json()
         .then(res => setNames(res))
         .cach(err => console.log(err))
     }
-  }
+  
     
   useEffect(() => {
     fetchData()
-  }, [names])
+  }, [])
 
   console.log('NAMES HERE', names)
   return (
@@ -53,7 +68,7 @@ const MapView = props => {
         <View style={styles.topRight}>
         <View style={styles.topRightUpper}>
           <Image style={styles.heart} source={require("./heart.png")}></Image>
-          <Text style={{fontSize: 18}}>3</Text>
+          <Text style={{fontSize: 18}}>{dog.likes}</Text>
         </View>
         <View style={styles.topRightLower}>
           <Text style={{fontSize: 12, color: '#AAAAAA'}}>Last walk with you was Dec 17th</Text>
@@ -63,20 +78,20 @@ const MapView = props => {
       <View style={styles.middle}>
         <View style={styles.middleHeader}>
           <View style={styles.middleHeaderTop}>
-            <Text style={{fontWeight: 'bold', fontSize: 25}}>Louie</Text>
-            <Image style={styles.gender} source={require("./female.png")}></Image>
-            <Text style={{fontWeight: 'bold', fontSize: 25}}> 2 Months</Text>
+            <Text style={{fontWeight: 'bold', fontSize: 25}}>{dog.name}</Text>
+            <Image style={styles.gender} source={gender}></Image>
+            <Text style={{fontWeight: 'bold', fontSize: 25}}> {dog.age}</Text>
           </View>
           <View style={styles.middleHeaderBottom}>
-            <Text style={{fontSize: 18}}>Some kind of dog breed</Text>
+            <Text style={{fontSize: 18}}>{dog.breed}</Text>
           </View>
         </View>
         <View style={styles.middleDescription}>
-          <Text style={{fontSize: 15, lineHeight: 20}}>The American Staffordshire Terrier is a muscular breed that is known for being strong for its size, yet loving and affectionate with their human family. American Staffordshire.</Text> 
+          <Text style={{fontSize: 15, lineHeight: 20}}>{dog.description}</Text> 
         </View>
       </View>
       <View style={styles.bottom}>
-        {randomDogPhotots.map(photo => {
+        {dogPhotos.map(photo => {
           return (
             <ImageZoom
               image={{
