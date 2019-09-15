@@ -14,19 +14,17 @@ import { Video } from "expo-av"
 import { LinearGradient } from "expo-linear-gradient"
 
 import Match from "./match"
+import FeedbackView from '../FeedbackView'
+import GenderIcon from '../GenderIcon'
 
 import * as stub from "./stub"
 
 import LikeImage from "./assets/like.png"
-import MailImage from "./assets/mail.png"
-import FemailImage from "./assets/femail.png"
 import ShareImage from "./assets/share.png"
 import CancelImage from "./assets/cancel.png"
 import ArrowImage from "./assets/arrow.png"
 
 const MONTHS = [
-  "JAN",
-  "FEB",
   "Jan",
   "Feb",
   "Mar",
@@ -67,6 +65,12 @@ const loadHistory = async () =>
       resolve(stub.history)
     }, 300)
   })
+
+const ProfileView = ({dog, onBack}) => (
+  <View style={{position: 'absolute', top: 0, left: 0, bottom: 0, right: 0}}>
+    <FeedbackView dog={dog} onBack={onBack} />
+  </View>
+)
 
 const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
   <View
@@ -120,16 +124,6 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
   </View>
 )
 
-const SexImage = ({ sex, style = {} }) => (
-  <View style={{ ...style, width: 22, height: 22 }}>
-    {sex === 1 ? (
-      <Image style={{ flex: 1, resizeMode: "contain" }} source={MailImage} />
-    ) : (
-      <Image style={{ flex: 1, resizeMode: "contain" }} source={FemailImage} />
-    )}
-  </View>
-)
-
 const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
   const { width, height } = Dimensions.get("window")
 
@@ -174,7 +168,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
           justifyContent: "center"
         }}
       >
-        <TouchableOpacity onPress={onProfile} style={{ marginTop: 16 }} activeOpacity={.8}>
+        <TouchableOpacity onPress={() => onProfile(dog)} style={{ marginTop: 16 }} activeOpacity={.8}>
           <Image
             style={{
               width: 44,
@@ -215,7 +209,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
             >
               {dog.name}
             </Text>
-            <SexImage sex={dog.sex} style={{ marginLeft: 4 }} />
+            <GenderIcon sex={dog.sex} style={{ marginLeft: 4 }} />
             <Text
               style={{
                 fontSize: 25,
@@ -323,13 +317,13 @@ const DogList = ({
 
 const DogView = ({
   onSelect = dog => {},
-  onProfile = dog => {},
   onBack = () => {}
 }) => {
   const [tab, setTab] = useState(0)
   const [dogs, setDogs] = useState([])
   const [history, setHistory] = useState([])
   const [loveDog, setDog] = useState(null)
+  const [profile, setProfile] = useState(null)
 
   useEffect(() => {
     ;(async () => {
@@ -356,6 +350,10 @@ const DogView = ({
     setTab(0)
   }, [])
 
+  const handleProfle = useCallback(dog => {
+    setProfile(dog || null)
+  }, [])
+
   return (
     <View style={{ height: "100%", width: "100%" }}>
       {tab === 0 ? (
@@ -363,14 +361,14 @@ const DogView = ({
           key="foryou"
           dogs={dogs}
           onLike={handleLike}
-          onProfile={onProfile}
+          onProfile={handleProfle}
         />
       ) : (
         <DogList
           key="history"
           dogs={history}
           onCancel={handleCancel}
-          onProfile={onProfile}
+          onProfile={handleProfle}
         />
       )}
 
@@ -382,6 +380,7 @@ const DogView = ({
       </View>
 
       {loveDog && <Match dog={loveDog} onConfirm={dog => onSelect(dog)} />}
+      {profile && <ProfileView dog={profile} onBack={handleProfle} />}
     </View>
   )
 }

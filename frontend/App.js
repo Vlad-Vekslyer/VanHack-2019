@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react"
-import { StatusBar, View } from "react-native"
+import React, { useState } from "react"
+import { StatusBar } from "react-native"
 
 import MapView from "./components/MapView"
 import DogView from "./components/DogView"
-import FeedbackView from "./components/FeedbackView"
 import ScheduleView from "./components/ScheduleView"
 import SignUpView from "./components/SignUpView"
-
-const LoginView = () => <View>login</View>
 
 StatusBar.setHidden(true)
 
@@ -22,15 +19,12 @@ export default () => {
     case "dog":
       return (
         <DogView
-          onProfile={() => setRoute("profile")}
           onSelect={() => setRoute("schedule")}
-          onBack={() => setRoute('map')}
+          onBack={() => setRoute("map")}
         />
       )
-    case "profile":
-      return <FeedbackView onBack={() => setRoute('dog')} />
     case "schedule":
-      return <ScheduleView onBack={() => setRoute('dog')} />
+      return <ScheduleView onBack={() => setRoute("dog")} />
   }
 }
 
