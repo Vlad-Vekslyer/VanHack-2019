@@ -11,7 +11,7 @@ const MapView = props => {
   const photo6 = 'https://placedog.net/750/1334?id=6'
 
   const randomDogPhotots = [photo1, photo2, photo3, photo4, photo5, photo6]
-  
+
   const [names, setNames] = useState({})
 
 
@@ -22,13 +22,13 @@ const MapView = props => {
       if (res.ok)
       {res.json()
         .then(res => setNames(res))
-        .cach(err => console.log(err))
-    }
+        .catch(err => console.log(err))
+      }
   }
-    
+
   useEffect(() => {
     fetchData()
-  }, [names])
+  }, [])
 
   console.log('NAMES HERE', names)
   return (
@@ -44,11 +44,11 @@ const MapView = props => {
       <ImageZoom
               image={{
                 src: 'https://httpstatusdogs.com/img/100.jpg',
-                style: {width: 100, 
-                  height: 100, 
+                style: {width: 100,
+                  height: 100,
                   borderRadius: 100/ 2,},
               }}
-              
+
               />
         <View style={styles.topRight}>
         <View style={styles.topRightUpper}>
@@ -72,7 +72,7 @@ const MapView = props => {
           </View>
         </View>
         <View style={styles.middleDescription}>
-          <Text style={{fontSize: 15, lineHeight: 20}}>The American Staffordshire Terrier is a muscular breed that is known for being strong for its size, yet loving and affectionate with their human family. American Staffordshire.</Text> 
+          <Text style={{fontSize: 15, lineHeight: 20}}>The American Staffordshire Terrier is a muscular breed that is known for being strong for its size, yet loving and affectionate with their human family. American Staffordshire.</Text>
         </View>
       </View>
       <View style={styles.bottom}>
@@ -83,7 +83,7 @@ const MapView = props => {
                 src: photo,
                 style: {height: 113, width: 113, margin: 3},
               }}
-              
+
               />
           )
         })}
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     padding: 8,
 
   },
-  
+
 /////
   top:{
     flexDirection: 'row',
@@ -115,10 +115,10 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   topImage: {
-    width: 100, 
-    height: 100, 
+    width: 100,
+    height: 100,
     borderRadius: 100/ 2,
-  }, 
+  },
   heart: {
     height: 50,
     width: 50,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     fontWeight: 'bold',
     marginBottom: 10,
-  }, 
+  },
   middleDescription: {
     marginBottom: 13,
   },
@@ -164,8 +164,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-  
-  
+
+
   },
 
   dogPics:{
