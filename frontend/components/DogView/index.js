@@ -14,8 +14,8 @@ import { Video } from "expo-av"
 import { LinearGradient } from "expo-linear-gradient"
 
 import Match from "./match"
-import FeedbackView from '../FeedbackView'
-import GenderIcon from '../GenderIcon'
+import FeedbackView from "../FeedbackView"
+import GenderIcon from "../GenderIcon"
 
 import * as stub from "./stub"
 
@@ -66,8 +66,8 @@ const loadHistory = async () =>
     }, 300)
   })
 
-const ProfileView = ({dog, onBack}) => (
-  <View style={{position: 'absolute', top: 0, left: 0, bottom: 0, right: 0}}>
+const ProfileView = ({ dog, onBack }) => (
+  <View style={{ position: "absolute", top: 0, left: 0, bottom: 0, right: 0 }}>
     <FeedbackView dog={dog} onBack={onBack} />
   </View>
 )
@@ -79,7 +79,7 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
       alignItems: "center",
       justifyContent: "center",
       width: "100%",
-      padding: 24
+      paddingTop: 8
     }}
   >
     <TouchableOpacity
@@ -102,7 +102,7 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
         borderLeftWidth: 1,
         height: 10,
         borderColor: "#fff",
-        marginLeft: 10,
+        marginLeft: 20,
         marginRight: 10
       }}
     />
@@ -137,7 +137,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
           width: "100%",
           height: "100%"
         }}
-        source={{ uri: dog.thumbnail, cache: 'force-cache' }}
+        source={{ uri: dog.thumbnail, cache: "force-cache" }}
       />
       <Video
         source={{ uri: dog.video }}
@@ -168,7 +168,11 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
           justifyContent: "center"
         }}
       >
-        <TouchableOpacity onPress={() => onProfile(dog)} style={{ marginTop: 16 }} activeOpacity={.8}>
+        <TouchableOpacity
+          onPress={() => onProfile(dog)}
+          style={{ marginTop: 16 }}
+          activeOpacity={0.8}
+        >
           <Image
             style={{
               width: 44,
@@ -177,7 +181,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
               borderColor: "#fff",
               borderWidth: 0.5
             }}
-            source={{ uri: dog.profilePic, cache: 'force-cache' }}
+            source={{ uri: dog.profilePic, cache: "force-cache" }}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -193,11 +197,10 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
         style={{
           position: "absolute",
           bottom: 0, // TODO: 12.5 maybe?
-          width: "100%",
-          paddingLeft: 10
+          width: "100%"
         }}
       >
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, paddingLeft: 20 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Text
               style={{
@@ -228,20 +231,18 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
             fontFamily: "Avenir-Medium",
             color: "#fff",
             fontWeight: "500",
-            marginTop: 4
+            marginTop: 4,
+            marginLeft: 20
           }}
         >
           {dog.breed}
         </Text>
         {dog.date ? (
           <>
-            <View style={{ alignItems: "center" }}>
-              <TouchableOpacity
-                onPress={() => onCancel(dog)}
-                style={{ width: 120, height: 40 }}
-              >
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <TouchableOpacity onPress={() => onCancel(dog)}>
                 <Image
-                  style={{ flex: 1, resizeMode: "contain" }}
+                  style={{ width: 124, height: 40, resizeMode: "contain" }}
                   source={CancelImage}
                 />
               </TouchableOpacity>
@@ -250,7 +251,8 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
               style={{
                 flexDirection: "column",
                 marginTop: 10,
-                paddingBottom: 20
+                paddingBottom: 20,
+                marginLeft: 20
               }}
             >
               <Text
@@ -315,10 +317,7 @@ const DogList = ({
   </ScrollView>
 )
 
-const DogView = ({
-  onSelect = dog => {},
-  onBack = () => {}
-}) => {
+const DogView = ({ onSelect = dog => {}, onBack = () => {} }) => {
   const [tab, setTab] = useState(0)
   const [dogs, setDogs] = useState([])
   const [history, setHistory] = useState([])
@@ -373,8 +372,21 @@ const DogView = ({
       )}
 
       <View style={{ position: "absolute", top: 0, width: "100%" }}>
-        <TouchableOpacity onPress={onBack} style={{ marginTop: 16 }} activeOpacity={0.8}>
-          <Image source={ArrowImage} style={{position: 'absolute', left: 10, top: 15, width: 15, height: 10}} />
+        <TouchableOpacity
+          onPress={onBack}
+          style={{ marginTop: 16 }}
+          activeOpacity={0.8}
+        >
+          <Image
+            source={ArrowImage}
+            style={{
+              position: "absolute",
+              left: 20,
+              top: 15,
+              width: 15,
+              height: 10
+            }}
+          />
         </TouchableOpacity>
         <Tabs active={tab} onSelectTab={handleSelect} />
       </View>

@@ -11,7 +11,7 @@ const FeedbackView = ({ onBack, dog }) => {
 
     return (
     <View style={styles.container}>
-      <View style={styles.nav}>
+      <View style={{top: 12.5}}>
         <TouchableOpacity onPress={() => onBack()}>
           <Image style={styles.back} source={require("./back.png")}>
 
@@ -22,9 +22,9 @@ const FeedbackView = ({ onBack, dog }) => {
       <ImageZoom
               image={{
                 src: dog.profilePic,
-                style: {width: 100, 
-                  height: 100, 
-                  borderRadius: 100/ 2,},
+                style: {width: 72,
+                  height: 72, 
+                  borderRadius: 72/ 2,},
               }}
               
               />
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 8,
+    paddingTop: 30,
     margin: 12,
   },
   back:{
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
   },
 
   topRight:{
-
+    paddingTop: 3,
   },
   topRightUpper: {
     flexDirection: 'row',
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   topRightLower:{
-
+    marginTop: -10
   },
 /////
 
@@ -120,6 +121,8 @@ const styles = StyleSheet.create({
   middle:{
     padding: 8,
     margin: 12,
+    marginTop: 0,
+    paddingTop: 0
   },
   middleHeader: {
     marginBottom: 30,
