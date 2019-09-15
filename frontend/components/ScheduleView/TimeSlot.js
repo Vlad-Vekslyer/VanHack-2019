@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, Text, View, Image} from "react-native"
+import { StyleSheet, Text, View, Image, TouchableOpacity} from "react-native"
 import checkImage from "./assets/check.png"
 
 const styles = StyleSheet.create({
@@ -77,6 +77,8 @@ class TimeSlot extends React.Component {
   }
 
   render(){
+    const {onSelect} = this.props
+
     let time = this.getTime();
     this.props.walkers.forEach(walker => console.log(walker.profilePic));
     let walkerPics = this.props.walkers.map((walker, i) =>
@@ -91,7 +93,9 @@ class TimeSlot extends React.Component {
           <View style={styles.footer}>
             <View style={styles.walkerPics}>{walkerPics}</View>
             <Text style={styles.areYouGoing}>Are you going?</Text>
-            <Image style={styles.checkImage} source={checkImage}></Image>
+            <TouchableOpacity activeOpacity={0.8} onPress={onSelect}>
+              <Image style={styles.checkImage} source={checkImage}></Image>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

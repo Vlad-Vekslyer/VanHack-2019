@@ -59,7 +59,7 @@ const loadDogs = () =>
 
 const loadHistory = () =>
   fetch(
-    "https://vanhack-2019-backend.herokuapp.com/api/users/5d7daeac954d5a3918f39e26/dogs"
+    "https://vanhack-2019-backend.herokuapp.com/api/users/5d7da8a9fdff8019c83d981b/dogs"
   )
     .then(r => r.json())
     .then(data => {

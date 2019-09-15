@@ -1,5 +1,5 @@
-import React from "react"
-import {View, ImageBackground, Image, Text, TouchableOpacity } from "react-native"
+import React, { useCallback } from "react"
+import {View, Alert, Image, Text, TouchableOpacity } from "react-native"
 import TimeSlot from "./TimeSlot"
 import styles from "./styles"
 import arrowImage from "./assets/arrow-2.png"
@@ -15,6 +15,34 @@ let drakeBell = {
   profilePic: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Drake_Bell_2007_cropped_retouched.jpg/220px-Drake_Bell_2007_cropped_retouched.jpg"
 }
 
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+]
+
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+
+const formatDate = d => {
+  // 12:00 • SUN, 31, Dec.
+  const hour = d.getHours()
+  const min = d.getMinutes()
+  const month = MONTHS[d.getMonth()]
+  const date = d.getDate()
+  const day = DAYS[d.getDay()]
+
+  return `${hour}:${min} · ${day}, ${date} ${month}.`
+}
+
 class ScheduleView extends React.Component{
 
   state = {
@@ -25,40 +53,57 @@ class ScheduleView extends React.Component{
       //   availableTimes: [new Date('September 20, 2019 14:00:00'), new Date('September 20, 2019 16:00:00')]
       // },
       locationName: "East Richmond Animal Shelter",
-      walks: [
-        {time: new Date('September 20, 2019 14:00:00'), walkers: [joshPeck, drakeBell]},
-        {time: new Date('September 20, 2019 16:00:00'), walkers: [joshPeck, drakeBell]}
-      ]
+      // walks: [
+      //   {time: new Date('September 20, 2019 14:00:00'), walkers: [joshPeck, drakeBell]},
+      //   {time: new Date('September 20, 2019 16:00:00'), walkers: [joshPeck, drakeBell]}
+      // ]
     }
 
   async componentDidMount() {
     const { dogId } = this.props
     const data = await fetch(`https://vanhack-2019-backend.herokuapp.com/api/dogs/${dogId}/schedule`).then(r => r.json())
+    console.log(data.walks.map(w => ({...w, time: new Date(w.time)})))
     this.setState({
       loaded: true,
       dog: {
         ...data.dog,
         availableTimes: data.dog.availableTimes.map(str => new Date(str))
       },
-      // TODO: use data from the API
-      // walks: data.walks
+      walks: data.walks.map(w => ({...w, time: new Date(w.time)}))
     })
   }
 
   render(){
-    const { onBack } = this.props
+    const { onBack, onSelectTime } = this.props
     const { loaded } = this.state
     if (!loaded) {
       return null
+    }
+
+    const handleSelect = time => {
+      const date = formatDate(time)
+      Alert.alert(
+        date,
+        "Are you going to meet?",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "Confirm", onPress: () => onBack() }
+        ],
+        { cancelable: false }
+      )
     }
 
     let timeSlots = this.state.dog.availableTimes.map(timeSlot => {
       let walkers = this.state.walks.filter(walk => walk.time.getTime() === timeSlot.getTime());
       if(walkers.length > 0){
         const  w = walkers[0].walkers;
-        return <TimeSlot key={timeSlot.getTime()} time={timeSlot} walkers={w}/>
+        return <TimeSlot key={timeSlot.getTime()} time={timeSlot} walkers={w} onSelect={() => handleSelect(timeSlot)} />
       } else {
-        return <TimeSlot key={timeSlot.getTime()} time={timeSlot} walkers={[]}/>
+        return <TimeSlot key={timeSlot.getTime()} time={timeSlot} walkers={[]} onSelect={() => handleSelect(timeSlot)} />
       }
     })
 
