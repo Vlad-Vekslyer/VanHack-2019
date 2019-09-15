@@ -25,35 +25,38 @@ class MapView extends React.Component{
         availableTimes: [new Date('September 20, 2019 14:00:00'), new Date('September 20, 2019 16:00:00')]
       },
       locationName: "East Richmond Animal Shelter",
-      walks: [{time: new Date('September 20, 2019 14:00:00'), walkers: [joshPeck, drakeBell]}]
+      walks: [
+        {time: new Date('September 20, 2019 14:00:00'), walkers: [joshPeck, drakeBell]},
+        {time: new Date('September 20, 2019 16:00:00'), walkers: [joshPeck, drakeBell]}
+      ]
     }
-
 
   render(){
     let timeSlots = this.state.dog.availableTimes.map(timeSlot => {
       let walkers = this.state.walks.filter(walk => walk.time.getTime() === timeSlot.getTime());
       if(walkers.length > 0){
+        walkers = walkers[0].walkers;
         return <TimeSlot time={timeSlot} walkers={walkers}/>
       } else {
         return null;
       }
     })
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Image style={styles.backButton} source={arrowImage}></Image>
-          <Image source={this.state.dog.profilePic} style={styles.profilePic}></Image>
-          <View style={styles.dogHeaders}>
-            <Text style={styles.dogName}>
-              {this.state.dog.name},
-              {this.state.dog.age}
-            </Text>
-            <Text style={styles.locationName}>
-              <Image style={styles.pinImage} source={pinImage}></Image>
-              {this.state.locationName}
-            </Text>
+          <View style={styles.headerSection}>
+            <Image style={styles.backButton} source={arrowImage}></Image>
+            <Image source={this.state.dog.profilePic} style={styles.profilePic}></Image>
+            <View style={styles.dogHeaders}>
+              <Text style={styles.dogName}>{this.state.dog.name}, {this.state.dog.age}</Text>
+              <Text style={styles.locationName}>
+                <Image style={styles.pinImage} source={pinImage}></Image>
+                {this.state.locationName}
+              </Text>
+            </View>
           </View>
-        </View> 
+        </View>
         <View style={styles.slotsSection}>
           {timeSlots}
         </View>

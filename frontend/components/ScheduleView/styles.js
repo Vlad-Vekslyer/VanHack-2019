@@ -12,10 +12,17 @@ const styles = StyleSheet.create({
     resizeMode: "contain"
   },
   header : {
-    width: "80%",
-    marginTop: 10,
-    alignItems: "center",
-    flexDirection: "row"
+    width: "100%",
+    justifyContent: "center",
+    flexDirection: "row",
+    paddingTop: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65
   },
   profilePic : {
     borderRadius: 42,
@@ -23,7 +30,16 @@ const styles = StyleSheet.create({
     height: 45,
     marginLeft: 10,
     marginRight: 10,
-    boxShadow: "0 1px 5px 0 rgba(0, 0, 0, 0.2)"
+    shadowColor: "#000",
+    shadowOffset: {
+	     width: 0,
+	     height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    borderWidth: 0.5,
+    borderStyle: "solid",
+    borderColor: "#ffffff"
   },
   dogHeaders : {
     display: "flex",
@@ -39,7 +55,7 @@ const styles = StyleSheet.create({
     color: "#aaaaaa"
   },
   slotsSection: {
-    width: "80%",
+    width: "100%",
     flexDirection: "column"
   },
   pinImage : {
@@ -47,6 +63,11 @@ const styles = StyleSheet.create({
     height: 10,
     marginRight: 3,
     resizeMode: "contain"
+  },
+  headerSection: {
+    width: "80%",
+    alignItems: "center",
+    flexDirection: "row",
   }
 });
 
