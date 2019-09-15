@@ -11,6 +11,7 @@ StatusBar.setHidden(true)
 export default () => {
   // const [route, setRoute] = useState("signup")
   const [route, setRoute] = useState("dog")
+  const [dogId, setDogId] = useState(null)
 
   switch (route) {
     case "signup":
@@ -20,12 +21,15 @@ export default () => {
     case "dog":
       return (
         <DogView
-          onSelect={() => setRoute("schedule")}
+          onSelect={(id) => {
+            setDogId(id)
+            setRoute("schedule")
+          }}
           onBack={() => setRoute("map")}
         />
       )
     case "schedule":
-      return <ScheduleView onBack={() => setRoute("dog")} />
+      return <ScheduleView dogId={dogId} onBack={() => setRoute("dog")} />
   }
 }
 
