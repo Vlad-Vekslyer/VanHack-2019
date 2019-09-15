@@ -80,7 +80,7 @@ class TimeSlot extends React.Component {
     let time = this.getTime();
     this.props.walkers.forEach(walker => console.log(walker.profilePic));
     let walkerPics = this.props.walkers.map((walker, i) =>
-      <Image key={i} style={styles.walkerPic} source={{uri: walker.profilePic}} />
+      <Image key={i} style={styles.walkerPic} source={{uri: walker.profilePic, cache: 'force-cache'}} />
     )
 
     return(

@@ -137,7 +137,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
           width: "100%",
           height: "100%"
         }}
-        source={{ uri: dog.thumbnail }}
+        source={{ uri: dog.thumbnail, cache: 'force-cache' }}
       />
       <Video
         source={{ uri: dog.video }}
@@ -177,7 +177,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
               borderColor: "#fff",
               borderWidth: 0.5
             }}
-            source={{ uri: dog.profilePic }}
+            source={{ uri: dog.profilePic, cache: 'force-cache' }}
           />
         </TouchableOpacity>
         <TouchableOpacity

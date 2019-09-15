@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react"
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
 // import ImageZoom from 'react-medium-image-zoom'
 
-const ImageZoom = ({image}) => <Image source={{uri: image.src}} style={image.style} />
+const ImageZoom = ({image}) => <Image source={{uri: image.src, cache: 'force-cache'}} style={image.style} />
 
 import GenderIcon from '../GenderIcon'
 
