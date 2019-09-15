@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react"
 
 import {
-  StyleSheet,
+  Alert,
   Text,
   View,
   ScrollView,
@@ -127,6 +127,23 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
 const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
   const { width, height } = Dimensions.get("window")
 
+  const handleCancelPress = useCallback(() => {
+    const date =formatDate(dog.date)
+    Alert.alert(
+      date,
+      "Do you cancel this date?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => onCancel(dog) }
+      ],
+      { cancelable: false }
+    )
+  }, [dog])
+
   return (
     <View style={{ width, height }}>
       <Image
@@ -240,7 +257,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
         {dog.date ? (
           <>
             <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <TouchableOpacity onPress={() => onCancel(dog)}>
+              <TouchableOpacity onPress={handleCancelPress}>
                 <Image
                   style={{ width: 124, height: 40, resizeMode: "contain" }}
                   source={CancelImage}
@@ -375,7 +392,7 @@ const DogView = ({ onSelect = dog => {}, onBack = () => {} }) => {
         <Tabs active={tab} onSelectTab={handleSelect} />
         <TouchableOpacity
           onPress={onBack}
-          style={{ 
+          style={{
             position: "absolute",
             left: 12,
             top: 7,
