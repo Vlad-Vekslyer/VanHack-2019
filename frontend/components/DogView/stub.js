@@ -5,6 +5,7 @@ export const dogs = [
     age: 3,
     sex: 1,
     video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video001.mp4",
+    thumbnail: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video001.jpg",
     profilePic: "https://placedog.net/750/1334?id=1",
     album: [
       "https://placedog.net/500/280",
@@ -26,6 +27,7 @@ export const dogs = [
     age: 3,
     sex: 2,
     video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video002.mp4",
+    thumbnail: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video002.jpg",
     profilePic: "https://placedog.net/750/1334?id=2",
     album: [
       "https://placedog.net/500/280",
@@ -47,6 +49,7 @@ export const dogs = [
     age: 3,
     sex: 2,
     video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video003.mp4",
+    thumbnail: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video003.jpg",
     profilePic: "https://placedog.net/750/1334?id=3",
     album: [
       "https://placedog.net/500/280",
@@ -68,6 +71,7 @@ export const dogs = [
     age: 3,
     sex: 1,
     video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video004.mp4",
+    thumbnail: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video004.jpg",
     profilePic: "https://placedog.net/750/1334?id=4",
     album: [
       "https://placedog.net/500/280",
@@ -92,6 +96,7 @@ export const history = [
     age: 3,
     sex: 1,
     video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video005.mp4",
+    thumbnail: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video005.jpg",
     profilePic: "https://placedog.net/750/1334?id=5",
     album: [
       "https://placedog.net/500/280",
@@ -113,6 +118,7 @@ export const history = [
     age: 3,
     sex: 2,
     video: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video006.mp4",
+    thumbnail: "https://s3.amazonaws.com/shared.senta.me/vanhack2019/video006.jpg",
     profilePic: "https://placedog.net/750/1334?id=6",
     album: [
       "https://placedog.net/500/280",

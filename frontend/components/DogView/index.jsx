@@ -19,6 +19,7 @@ import LikeImage from "./assets/like@2x.png"
 import MailImage from "./assets/mail@2x.png"
 import FemailImage from "./assets/femail@2x.png"
 import ShareImage from "./assets/share@2x.png"
+import CancelImage from "./assets/cancel@3x.png"
 
 const loadDogs = async () =>
   new Promise((resolve, reject) => {
@@ -104,11 +105,17 @@ const DogProfile = ({ dog }) => {
   }
 
   return (
-    <View style={{ width, height, backgroundColor: "red" }}>
-      {/* <Image
-        style={{ flex: 1, resizeMode: "cover" }}
-        source={{ uri: dog.profilePic }}
-      /> */}
+    <View style={{ width, height }}>
+      <Image
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%"
+        }}
+        source={{ uri: dog.thumbnail }}
+      />
       <Video
         source={{ uri: dog.video }}
         rate={1.0}
@@ -204,10 +211,32 @@ const DogProfile = ({ dog }) => {
             style={{ width: 110, height: 110 }}
           >
             <Image
-              style={{ flex: 1, resizeMode: "cover" }}
+              style={{ flex: 1, resizeMode: "contain" }}
               source={LikeImage}
             />
           </TouchableOpacity>
+        </View>
+        <View style={{ alignItems: "center" }}>
+          <TouchableOpacity onPress={onPress} style={{ width: 120, height: 40 }}>
+            <Image
+              style={{ flex: 1, resizeMode: "contain" }}
+              source={CancelImage}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flexDirection: "column", marginTop: 10 }}>
+          <Text
+            style={{
+              fontSize: 18,
+              fontFamily: "Avenir",
+              color: "#fff",
+              fontWeight: "300",
+              marginTop: 4
+            }}
+          >
+            <Text>Your Date:</Text>
+            <Text style={{ fontWeight: "900" }}>12:00 · SUN, 31 Dec.</Text>
+          </Text>
         </View>
       </View>
     </View>
