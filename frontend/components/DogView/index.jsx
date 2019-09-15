@@ -129,12 +129,8 @@ const SexImage = ({ sex, style = {} }) => (
   </View>
 )
 
-const DogProfile = ({ dog }) => {
+const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
   const { width, height } = Dimensions.get("window")
-
-  const onPress = () => {
-    console.log("presed!")
-  }
 
   return (
     <View style={{ width, height }}>
@@ -177,7 +173,7 @@ const DogProfile = ({ dog }) => {
           justifyContent: "center"
         }}
       >
-        <TouchableOpacity onPress={onPress} style={{ marginTop: 16 }}>
+        <TouchableOpacity onPress={onProfile} style={{ marginTop: 16 }}>
           <Image
             style={{
               width: 44,
@@ -189,7 +185,12 @@ const DogProfile = ({ dog }) => {
             source={{ uri: dog.profilePic }}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={onPress} style={{ marginTop: 37.5 }}>
+        <TouchableOpacity
+          onPress={() => {
+            /* do nothing */
+          }}
+          style={{ marginTop: 37.5 }}
+        >
           <Image style={{ width: 44, height: 44 }} source={ShareImage} />
         </TouchableOpacity>
       </View>
@@ -241,7 +242,7 @@ const DogProfile = ({ dog }) => {
           <>
             <View style={{ alignItems: "center" }}>
               <TouchableOpacity
-                onPress={onPress}
+                onPress={() => onCancel(dog)}
                 style={{ width: 120, height: 40 }}
               >
                 <Image
@@ -276,7 +277,7 @@ const DogProfile = ({ dog }) => {
         ) : (
           <View style={{ alignItems: "center" }}>
             <TouchableOpacity
-              onPress={onPress}
+              onPress={() => onLike(dog)}
               style={{ width: 110, height: 110 }}
             >
               <Image
@@ -291,7 +292,12 @@ const DogProfile = ({ dog }) => {
   )
 }
 
-const DogList = ({ dogs }) => (
+const DogList = ({
+  dogs,
+  onLike = dog => {},
+  onCancel = dog => {},
+  onProfile = dog => {}
+}) => (
   <ScrollView
     // style={{ position: "absolute", top: 0, bottom: 0, width: "100%" }}
     contentContainerStyle={{
@@ -303,15 +309,26 @@ const DogList = ({ dogs }) => (
     snapToStart
   >
     {dogs.map(dog => (
-      <DogProfile key={dog.id} dog={dog} />
+      <DogProfile
+        key={dog.id}
+        dog={dog}
+        onLike={onLike}
+        onCancel={onCancel}
+        onProfile={onProfile}
+      />
     ))}
   </ScrollView>
 )
 
-const DogView = () => {
+const DogView = ({
+  onSelect = dog => {},
+  onProfile = dog => {},
+  onCancel = history => {}
+}) => {
   const [tab, setTab] = useState(0)
   const [dogs, setDogs] = useState([])
   const [history, setHistory] = useState([])
+  const [loveDog, setDog] = useState(null)
 
   useEffect(() => {
     ;(async () => {
@@ -325,26 +342,42 @@ const DogView = () => {
     })()
   }, [])
 
-  const handleSelect = useCallback(
-    index => {
-      setTab(index)
-    },
-    [tab, dogs]
-  )
+  const handleSelect = useCallback(index => {
+    setTab(index)
+  }, [])
+
+  const handleLike = useCallback(dog => {
+    setDog(dog)
+  }, [])
+
+  const handleCancel = useCallback(dog => {
+    // show confirm dialogue if I can
+    onCancel(dog)
+  }, [])
 
   return (
     <View style={{ height: "100%", width: "100%" }}>
       {tab === 0 ? (
-        <DogList key="foryou" dogs={dogs} />
+        <DogList
+          key="foryou"
+          dogs={dogs}
+          onLike={handleLike}
+          onProfile={onProfile}
+        />
       ) : (
-        <DogList key="history" dogs={history} />
+        <DogList
+          key="history"
+          dogs={history}
+          onCancel={handleCancel}
+          onProfile={onProfile}
+        />
       )}
 
       <View style={{ position: "absolute", top: 0, width: "100%" }}>
         <Tabs active={tab} onSelectTab={handleSelect} />
       </View>
 
-      {dogs && <Match dog={dogs[0]} />}
+      {loveDog && <Match dog={loveDog} onConfirm={dog => onSelect(dog)} />}
     </View>
   )
 }
