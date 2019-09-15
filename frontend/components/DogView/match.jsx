@@ -13,7 +13,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient"
 
 const MatchView = ({ dog }) => <View>
-  <Text>{dog.name} also wants to go with you!</Text>
+  <Text>{dog && dog.name} also wants to go with you!</Text>
 </View>
 
-export default DogView
+export default MatchView

@@ -13,6 +13,6 @@ storiesOf("Welcome", module).add("to Storybook", () => (
 import "../../components/ConfirmView/stories"
 import "../../components/DogView/stories"
 import "../../components/FeedbackView/stories"
-import "../../components/MapView/stories"
+// import "../../components/MapView/stories"
 import "../../components/ScheduleView/stories"
 import "../../components/SignUpView/stories"

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import { Location, Permissions } from 'expo-constants';
-import MapView from 'react-native-maps';
+import * as Permissions from 'expo-permissions';
+import * as Location from 'expo-location';
+import MapView, {Marker} from 'react-native-maps';
 import styles from './styles';
 
 export default class Map extends React.Component {
@@ -74,8 +75,8 @@ export default class Map extends React.Component {
     let location = await Location.getCurrentPositionAsync({});
     this.setState({
       locationResult: {
-        latitude: location.coordinates.latitude,
-        longitude: location.coordinates.longitude,
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
@@ -92,12 +93,12 @@ export default class Map extends React.Component {
           initialRegion={this.state.locationResult}
           region={this.state.region}>
           {this.state.markers.map(marker => (
-            <MapView.Marker
+            <Marker
               key={marker.id}
               coordinate={marker.coordinates}
               title={marker.title}
               description={marker.description}
-              image={require('../assets/heart.png')}
+              image={require('../../assets/heart.png')}
               onPress={() => this._handleEvent()}
             />
           ))}
