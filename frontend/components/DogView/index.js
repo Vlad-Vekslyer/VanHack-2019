@@ -372,23 +372,25 @@ const DogView = ({ onSelect = dog => {}, onBack = () => {} }) => {
       )}
 
       <View style={{ position: "absolute", top: 0, width: "100%" }}>
+        <Tabs active={tab} onSelectTab={handleSelect} />
         <TouchableOpacity
           onPress={onBack}
-          style={{ marginTop: 16 }}
+          style={{ 
+            position: "absolute",
+            left: 12,
+            top: 7,
+            padding: 8
+          }}
           activeOpacity={0.8}
         >
           <Image
             source={ArrowImage}
             style={{
-              position: "absolute",
-              left: 20,
-              top: 15,
               width: 15,
               height: 10
             }}
           />
         </TouchableOpacity>
-        <Tabs active={tab} onSelectTab={handleSelect} />
       </View>
 
       {loveDog && <Match dog={loveDog} onConfirm={dog => onSelect(dog)} />}
