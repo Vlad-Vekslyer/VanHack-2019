@@ -34,6 +34,16 @@ app.get('/api/dogs/:id/schedule', async (req, res) => {
   } catch(e){
     res.send(e);
   }
+});
+
+app.get('/api/users/:id/dogs', async (req, res) => {
+  User.findById(req.params.id).populate('dogsWalked').exec((err, user) => {
+    if(err){
+      res.send(err)
+    } else {
+      res.json(user);
+    }
+  });
 })
 
 const port = 5000
