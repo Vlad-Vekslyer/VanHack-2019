@@ -15,6 +15,34 @@ User.findOne({name:"Shota"})
   })
 });
 
+User.findOne({name: "Vlad"}, (err, user) => {
+  if(err){
+    console.error(err)
+  } else {
+    Dog.findById(user.dogsWalked[1], (err, dog) => {
+      if(err){
+        console.error(err);
+      } else {
+        Walk.findOne({dog: dog.id}, (err, walk) => {
+          if(err){
+            console.error(err)
+          } else {
+            console.log("walk found")
+            walk.walkers.push(user);
+            walk.save((err) => {
+              if(err){
+                console.error(err)
+              } else {
+                console.log("Updated user");
+              }
+            })
+          }
+        })
+      }
+    })
+  }
+})
+
 User.findOne({name: "Hiro"})
 .then(user => {
   Dog.findOne({name: "Chewie"}, (err, dog) => {
