@@ -16,14 +16,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     paddingTop: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-    	width: 0,
-    	height: 3,
-    },
+    // shadowColor: "#000",
+    // shadowOffset: {
+    // 	width: 0,
+    // 	height: 3,
+    // },
     paddingBottom: 10,
-    shadowOpacity: 0.29,
-    shadowRadius: 2.55
+    // shadowOpacity: 0.29,
+    // shadowRadius: 2.55
   },
   profilePic : {
     borderRadius: 45 / 2,
@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
     height: 45,
     marginLeft: 10,
     marginRight: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-	     width: 0,
-	     height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    // shadowColor: "#000",
+    // shadowOffset: {
+	  //    width: 0,
+	  //    height: 1,
+    // },
+    // shadowOpacity: 0.22,
+    // shadowRadius: 2.22,
     borderWidth: 0.5,
     borderColor: "#ffffff"
   },

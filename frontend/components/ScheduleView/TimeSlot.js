@@ -5,13 +5,13 @@ import checkImage from "./assets/check.png"
 const styles = StyleSheet.create({
   timeSlot: {
     paddingTop: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-    	width: 0,
-    	height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    // 	width: 0,
+    // 	height: 3,
+    // },
+    // shadowOpacity: 0.29,
+    // shadowRadius: 4.65,
     flexDirection: "row",
     justifyContent: "center",
     paddingBottom: 10
