@@ -18,12 +18,12 @@ let drakeBell = {
 class ScheduleView extends React.Component{
 
   state = {
-      dog: {
-        name: "Rocky",
-        age: "1 month",
-        profilePic: "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg",
-        availableTimes: [new Date('September 20, 2019 14:00:00'), new Date('September 20, 2019 16:00:00')]
-      },
+      // dog: {
+      //   name: "Rocky",
+      //   age: "1 month",
+      //   profilePic: "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg",
+      //   availableTimes: [new Date('September 20, 2019 14:00:00'), new Date('September 20, 2019 16:00:00')]
+      // },
       locationName: "East Richmond Animal Shelter",
       walks: [
         {time: new Date('September 20, 2019 14:00:00'), walkers: [joshPeck, drakeBell]},
@@ -31,8 +31,26 @@ class ScheduleView extends React.Component{
       ]
     }
 
+  async componentDidMount() {
+    const { dogId } = this.props
+    const data = await fetch(`https://vanhack-2019-backend.herokuapp.com/api/dogs/${dogId}/schedule`).then(r => r.json())
+    this.setState({
+      loaded: true,
+      dog: {
+        ...data.dog,
+        availableTimes: data.dog.availableTimes.map(str => new Date(str))
+      },
+      // TODO: use data from the API
+      // walks: data.walks
+    })
+  }
+
   render(){
     const { onBack } = this.props
+    const { loaded } = this.state
+    if (!loaded) {
+      return null
+    }
 
     let timeSlots = this.state.dog.availableTimes.map(timeSlot => {
       let walkers = this.state.walks.filter(walk => walk.time.getTime() === timeSlot.getTime());
@@ -40,7 +58,7 @@ class ScheduleView extends React.Component{
         const  w = walkers[0].walkers;
         return <TimeSlot key={timeSlot.getTime()} time={timeSlot} walkers={w}/>
       } else {
-        return null;
+        return <TimeSlot key={timeSlot.getTime()} time={timeSlot} walkers={[]}/>
       }
     })
 
@@ -51,7 +69,7 @@ class ScheduleView extends React.Component{
             <TouchableOpacity onPress={onBack}>
               <Image style={styles.backButton} source={arrowImage}></Image>
             </TouchableOpacity>
-            <Image source={{uri: this.state.dog.profilePic, cache: 'force-cache'}} style={styles.profilePic}></Image>
+            <Image source={{uri: this.state.dog.profileVidThumbnail, cache: 'force-cache'}} style={styles.profilePic}></Image>
             <View style={styles.dogHeaders}>
               <Text style={styles.dogName}>{this.state.dog.name}, {this.state.dog.age}</Text>
               <Text style={styles.locationName}>

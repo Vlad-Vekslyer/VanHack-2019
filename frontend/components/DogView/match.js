@@ -63,7 +63,7 @@ const MatchView = ({ dog, onConfirm }) => {
               borderColor: "#fff",
               borderWidth: 0.5
             }}
-            source={{ uri: dog.profilePic, cache: 'force-cache' }}
+            source={{ uri: dog.profileVidThumbnail, cache: 'force-cache' }}
           />
         )}
         <TouchableOpacity style={{ marginTop: 20 }} onPress={onConfirm}>

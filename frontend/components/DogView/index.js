@@ -412,7 +412,9 @@ const DogView = ({ onSelect = dog => {}, onBack = () => {} }) => {
         </TouchableOpacity>
       </View>
 
-      {loveDog && <Match dog={loveDog} onConfirm={dog => onSelect(dog)} />}
+      {loveDog && (
+        <Match dog={loveDog} onConfirm={() => onSelect(loveDog._id)} />
+      )}
       {profile && <ProfileView dog={profile} onBack={handleProfle} />}
     </View>
   )
