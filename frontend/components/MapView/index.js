@@ -8,12 +8,15 @@ import styles from './styles';
 export default class Map extends React.Component {
   // TODO: Get current location via async call
   state = {
+    selectedLocation: null,
     locationResult: null,
     region: {
       latitude: 49.2835,
       longitude: -123.1153,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
+      // latitudeDelta: 0.0922,
+      // longitudeDelta: 0.0421,
+      latitudeDelta: 0.2882,
+      longitudeDelta: 0.3191,
     },
     markers: [
       {
@@ -59,9 +62,13 @@ export default class Map extends React.Component {
     this._getLocationAsync();
   }
 
-  _handleEvent() {
-    console.log('Marker was clicked');
-    
+  _handleEvent(markerId) {
+    if (this.state.selectedLocation === markerId) {
+      const location  = this.state.markers.find(el => el.id == markerId)
+      this.props.onChooseLocation(location)
+    } else {
+      this.setState({ selectedLocation: markerId })
+    }
   }
 
   _getLocationAsync = async () => {
@@ -77,8 +84,10 @@ export default class Map extends React.Component {
       locationResult: {
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        // latitudeDelta: 0.0922,
+        // longitudeDelta: 0.0421,
+        latitudeDelta: 0.2882,
+        longitudeDelta: 0.3191,
       },
     });
   };
@@ -99,7 +108,7 @@ export default class Map extends React.Component {
               title={marker.title}
               description={marker.description}
               image={require('../../assets/heart.png')}
-              onPress={() => this._handleEvent()}
+              onPress={() => this._handleEvent(marker.id)}
             />
           ))}
         </MapView>

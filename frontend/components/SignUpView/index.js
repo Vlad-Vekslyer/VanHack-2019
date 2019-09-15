@@ -6,7 +6,10 @@ import { Input, Button } from 'react-native-elements';
 // import Home from './Home';
 
 export default class Auth extends React.Component {
+
   render() {
+    const { onSignIn } = this.props
+
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -36,7 +39,7 @@ export default class Auth extends React.Component {
           <Button
             title="LOGIN"
             buttonStyle={styles.button}
-            onPress={() => Alert.alert('Simple Button pressed')}
+            onPress={onSignIn}
           />
           <View style={{fontFamily: 'Avenir-Medium', fontSize: 22, marginTop: 40, flexDirection:'row'}}>
             <Text style={{marginRight: 25, fontWeight: '600'}}>{"Don't you have an account?"}</Text>
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#00cc00',
     borderRadius: 50,
-    fontFamily: 'Avenir-Medium',
+    // fontFamily: 'Avenir-Medium',
     padding: 10.5,
     marginTop: 30,
     width: 280

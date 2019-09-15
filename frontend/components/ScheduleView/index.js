@@ -1,5 +1,5 @@
 import React from "react"
-import {View, ImageBackground, Image, Text } from "react-native"
+import {View, ImageBackground, Image, Text, TouchableOpacity } from "react-native"
 import TimeSlot from "./TimeSlot"
 import styles from "./styles"
 import arrowImage from "./assets/arrow-2.png"
@@ -32,6 +32,8 @@ class ScheduleView extends React.Component{
     }
 
   render(){
+    const { onBack } = this.props
+
     let timeSlots = this.state.dog.availableTimes.map(timeSlot => {
       let walkers = this.state.walks.filter(walk => walk.time.getTime() === timeSlot.getTime());
       if(walkers.length > 0){
@@ -46,7 +48,9 @@ class ScheduleView extends React.Component{
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerSection}>
-            <Image style={styles.backButton} source={arrowImage}></Image>
+            <TouchableOpacity onPress={onBack}>
+              <Image style={styles.backButton} source={arrowImage}></Image>
+            </TouchableOpacity>
             <Image source={{uri: this.state.dog.profilePic}} style={styles.profilePic}></Image>
             <View style={styles.dogHeaders}>
               <Text style={styles.dogName}>{this.state.dog.name}, {this.state.dog.age}</Text>

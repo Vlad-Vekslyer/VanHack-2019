@@ -84,7 +84,7 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
       <Text
         style={{
           fontSize: 18,
-          fontFamily: "Avenir",
+          fontFamily: "Avenir-Medium",
           fontWeight: active === 0 ? "900" : "normal",
           color: "#fff"
         }}
@@ -108,7 +108,7 @@ const Tabs = ({ active = 0, onSelectTab = index => {} }) => (
       <Text
         style={{
           fontSize: 18,
-          fontFamily: "Avenir",
+          fontFamily: "Avenir-Medium",
           fontWeight: active === 1 ? "900" : "normal",
           color: "#fff"
         }}
@@ -207,7 +207,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
             <Text
               style={{
                 fontSize: 25,
-                fontFamily: "Avenir",
+                fontFamily: "Avenir-Medium",
                 color: "#fff",
                 fontWeight: "900"
               }}
@@ -218,7 +218,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
             <Text
               style={{
                 fontSize: 25,
-                fontFamily: "Avenir",
+                fontFamily: "Avenir-Medium",
                 color: "#fff",
                 fontWeight: "900"
               }}
@@ -230,7 +230,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
         <Text
           style={{
             fontSize: 18,
-            fontFamily: "Avenir",
+            fontFamily: "Avenir-Medium",
             color: "#fff",
             fontWeight: "500",
             marginTop: 4
@@ -261,7 +261,7 @@ const DogProfile = ({ dog, onLike, onCancel, onProfile }) => {
               <Text
                 style={{
                   fontSize: 18,
-                  fontFamily: "Avenir",
+                  fontFamily: "Avenir-Medium",
                   color: "#fff",
                   fontWeight: "300",
                   marginTop: 4
@@ -322,8 +322,7 @@ const DogList = ({
 
 const DogView = ({
   onSelect = dog => {},
-  onProfile = dog => {},
-  onCancel = history => {}
+  onProfile = dog => {}
 }) => {
   const [tab, setTab] = useState(0)
   const [dogs, setDogs] = useState([])
@@ -352,7 +351,7 @@ const DogView = ({
 
   const handleCancel = useCallback(dog => {
     // show confirm dialogue if I can
-    onCancel(dog)
+    setTab(0)
   }, [])
 
   return (

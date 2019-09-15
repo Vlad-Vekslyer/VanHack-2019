@@ -48,7 +48,7 @@ const MatchView = ({ dog, onConfirm }) => {
             marginTop: 16,
             color: "#fff",
             fontSize: 18,
-            fontFamily: "Avenir"
+            fontFamily: "Avenir-Medium"
           }}
         >
           {dog && dog.name} also wants to go with you!
@@ -66,7 +66,7 @@ const MatchView = ({ dog, onConfirm }) => {
             source={{ uri: dog.profilePic }}
           />
         )}
-        <TouchableOpacity style={{ marginTop: 20 }} onPress={() => onConfirm}>
+        <TouchableOpacity style={{ marginTop: 20 }} onPress={onConfirm}>
           <Image style={{ width: 312, height: 80 }} source={Button} />
         </TouchableOpacity>
       </View>

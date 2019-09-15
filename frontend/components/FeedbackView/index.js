@@ -5,7 +5,7 @@ import female from './female.png'
 
 const ImageZoom = ({image}) => <Image source={{uri: image.src}} style={image.style} />
 
-const MapView = props => {
+const MapView = ({ onBack }) => {
   const photo1 = 'https://placedog.net/750/1334?id=1'
   const photo2 = 'https://placedog.net/750/1334?id=2'
   const photo3 = 'https://placedog.net/750/1334?id=3'
@@ -51,7 +51,7 @@ const MapView = props => {
   return (
     <View style={styles.container}>
       <View style={styles.nav}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onBack}>
           <Image style={styles.back} source={require("./back.png")}>
 
           </Image>

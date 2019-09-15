@@ -16,15 +16,20 @@ export default () => {
 
   switch (route) {
     case "signup":
-      return <SignUpView />
+      return <SignUpView onSignIn={() => setRoute("map")} />
     case "map":
-      return <MapView />
+      return <MapView onChooseLocation={() => setRoute("dog")} />
     case "dog":
-      return <DogView />
+      return (
+        <DogView
+          onProfile={() => setRoute("profile")}
+          onSelect={() => setRoute("schedule")}
+        />
+      )
     case "profile":
-      return <FeedbackView />
+      return <FeedbackView onBack={() => setRoute('dog')} />
     case "schedule":
-      return <ScheduleView />
+      return <ScheduleView onBack={() => setRoute('dog')} />
   }
 }
 
