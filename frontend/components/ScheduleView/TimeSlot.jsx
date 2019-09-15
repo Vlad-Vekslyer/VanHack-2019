@@ -4,7 +4,7 @@ import checkImage from "./assets/check@3x.png"
 
 const styles = StyleSheet.create({
   timeSlot: {
-    paddingTop: 15,
+    paddingTop: 10,
     shadowColor: "#000",
     shadowOffset: {
     	width: 0,
@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingBottom: 10
   },
   timeSlotHeader: {
     width: "80%"
@@ -67,7 +68,11 @@ class TimeSlot extends React.Component {
     let gmtIndex = time.indexOf('GMT');
     let gmtPortion = time.slice(gmtIndex, time.length);
     time = time.replace(gmtPortion, '');
-    time = time.replace('  ',' · ')
+    time = time.replace('  ',' · ');
+    let hourIndex = time.indexOf('·') + 2;
+    let hour = time.slice(hourIndex, time.length);
+    console.log("Hour:" + hour);
+    time = hour + '· ' + time.slice(0, hourIndex - 3);
     return time;
   }
 

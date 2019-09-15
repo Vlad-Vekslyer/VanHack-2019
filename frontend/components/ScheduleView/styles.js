@@ -21,8 +21,9 @@ const styles = StyleSheet.create({
     	width: 0,
     	height: 3,
     },
+    paddingBottom: 10,
     shadowOpacity: 0.29,
-    shadowRadius: 4.65
+    shadowRadius: 2.55
   },
   profilePic : {
     borderRadius: 42,
