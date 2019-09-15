@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, Text, View, Image} from "react-native"
-import checkImage from "./assets/check@3x.png"
+import checkImage from "./assets/check.png"
 
 const styles = StyleSheet.create({
   timeSlot: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   walkerPic: {
     width: 30,
     height: 30,
-    borderRadius: 42,
+    borderRadius: 15,
     marginRight: 10
   },
   checkImage : {
@@ -79,7 +79,10 @@ class TimeSlot extends React.Component {
   render(){
     let time = this.getTime();
     this.props.walkers.forEach(walker => console.log(walker.profilePic));
-    let walkerPics = this.props.walkers.map(walker => <Image style={styles.walkerPic} source={walker.profilePic}></Image>)
+    let walkerPics = this.props.walkers.map((walker, i) =>
+      <Image key={i} style={styles.walkerPic} source={{uri: walker.profilePic}} />
+    )
+
     return(
       <View style={styles.timeSlot}>
         <View style={styles.timeSlotHeader}>
