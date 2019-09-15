@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": false
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/Vlad-Vekslyer/VanHack-2019"
   }
 }
